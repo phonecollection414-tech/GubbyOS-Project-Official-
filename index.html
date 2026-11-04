@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c0c0c0">
+  <title>GubbyOS Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="desktop" aria-label="Bureau GubbyOS Project">
+    <div class="desktop-icons">
+      <button class="desktop-icon" data-open="welcome"><span class="icon">🖥️</span><span>Bienvenue</span></button>
+      <button class="desktop-icon" data-open="releases"><span class="icon">💾</span><span>Releases</span></button>
+      <button class="desktop-icon" data-open="docs"><span class="icon">📄</span><span>Documentation</span></button>
+      <button class="desktop-icon" data-open="about"><span class="icon">ℹ️</span><span>À propos</span></button>
+    </div>
+
+    <section class="window active" id="welcome" style="--left: 23%; --top: 12%; --width: 530px">
+      <header class="titlebar">
+        <span class="title"><span>🖥️</span> Bienvenue dans GubbyOS Project</span>
+        <div class="window-controls"><button aria-label="Réduire" class="minimize">_</button><button aria-label="Fermer" class="close">×</button></div>
+      </header>
+      <div class="window-body welcome-body">
+        <div class="hero-mark">G<span>●</span></div>
+        <div>
+          <h1>GubbyOS Project</h1>
+          <p class="lead">Un petit système d'exploitation. Un grand projet.</p>
+          <p>Bienvenue sur le site officiel du projet GubbyOS ! Retrouvez ici les versions, les informations et la documentation du système.</p>
+          <div class="button-row">
+            <button class="classic-button" data-open="releases">Voir les releases</button>
+            <button class="classic-button" data-open="about">Découvrir le projet</button>
+          </div>
+        </div>
+      </div>
+      <div class="statusbar">Prêt&nbsp; • &nbsp;GubbyOS Project</div>
+    </section>
+
+    <section class="window hidden" id="releases" style="--left: 30%; --top: 17%; --width: 570px">
+      <header class="titlebar">
+        <span class="title"><span>💾</span> Releases — GubbyOS Project</span>
+        <div class="window-controls"><button aria-label="Réduire" class="minimize">_</button><button aria-label="Fermer" class="close">×</button></div>
+      </header>
+      <div class="window-body">
+        <h2>📦 Toutes les versions</h2>
+        <p>Retrouvez les versions publiées de GubbyOS et leur état de développement.</p>
+        <div class="release-card">
+          <div class="release-heading"><strong>GubbyOS 0.1 Dev</strong><span class="badge">Développement</span></div>
+          <p>Première version de développement de GubbyOS.</p>
+          <dl><dt>Version</dt><dd>0.1 Dev</dd><dt>Architecture</dt><dd>x86 (i386)</dd><dt>Image</dt><dd>gubbyos.img — 1,44 Mo</dd></dl>
+          <a class="classic-button download-link" href="releases/gubbyos.img" download>Télécharger gubbyos.img</a>
+          <p class="small-note release-integrity">Fichier fourni : 14 848 octets (14,5 Kio)<br>SHA-256 : <code>ecb5afa71a44a529531c97bdebca419ef06c72ac7af4ee8e942a0623ce5e7346</code><br><strong>À vérifier :</strong> ce fichier est beaucoup plus petit qu'une image disquette complète de 1,44 Mo. Confirme qu'il s'agit bien de la release à distribuer avant publication.</p>
+        </div>
+        <p class="small-note">Les fichiers de téléchargement seront activés lorsqu'ils seront publiés dans le dépôt du projet.</p>
+      </div>
+      
+        <div class="release-card">
+          <h3>▶️ Démarrer GubbyOS avec VirtualBox 6.1</h3>
+          <ol>
+            <li>Éteignez complètement la machine virtuelle.</li>
+            <li>Ouvrez <strong>Configuration → Stockage</strong>.</li>
+            <li>Ajoutez un contrôleur de disquette et choisissez <strong>I82078 (Floppy)</strong>.</li>
+            <li>Ajoutez un lecteur de disquette sous ce contrôleur et sélectionnez <code>releases/gubbyos.img</code>.</li>
+            <li>Dans <strong>Configuration → Système → Ordre d'amorçage</strong>, activez <strong>Disquette</strong> et placez-la en premier si nécessaire.</li>
+            <li>Démarrez la VM : GubbyOS doit démarrer depuis l'image de disquette.</li>
+          </ol>
+          <p class="small-note">Important : ce fichier est une image de disquette (.img), pas une image DVD/ISO. Ne l'attachez pas au lecteur optique.</p>
+        </div>
+
+      <div class="statusbar">1 version répertoriée</div>
+    </section>
+
+    <section class="window hidden" id="docs" style="--left: 35%; --top: 21%; --width: 510px">
+      <header class="titlebar">
+        <span class="title"><span>📄</span> Documentation</span>
+        <div class="window-controls"><button aria-label="Réduire" class="minimize">_</button><button aria-label="Fermer" class="close">×</button></div>
+      </header>
+      <div class="window-body">
+        <h2>Documentation GubbyOS</h2>
+        <p>La documentation du projet sera enrichie au fil des versions.</p>
+        <ul class="doc-list">
+          <li><span>📘</span> Présentation de GubbyOS</li>
+          <li><span>⚙️</span> Installation et démarrage</li>
+          <li><span>🛍️</span> GuStore</li>
+          <li><span>👤</span> GuAccount</li>
+          <li><span>🔄</span> GUpdate</li>
+        </ul>
+        <p class="small-note">Les guides détaillés arrivent prochainement.</p>
+      </div>
+      <div class="statusbar">Centre d'aide</div>
+    </section>
+
+    <section class="window hidden" id="about" style="--left: 39%; --top: 25%; --width: 440px">
+      <header class="titlebar">
+        <span class="title"><span>ℹ️</span> À propos de GubbyOS Project</span>
+        <div class="window-controls"><button aria-label="Réduire" class="minimize">_</button><button aria-label="Fermer" class="close">×</button></div>
+      </header>
+      <div class="window-body about-body">
+        <div class="about-logo">G</div>
+        <div><h2>GubbyOS Project</h2><p>Un système d'exploitation expérimental en cours de développement.</p><p><strong>Site du projet</strong><br>Version du site : 1.0</p></div>
+      </div>
+      <div class="statusbar">© GubbyOS Project</div>
+    </section>
+
+    <div class="taskbar">
+      <button class="start-button" id="start-button"><span class="start-logo">G</span> <strong>Démarrer</strong></button>
+      <div class="task-divider"></div>
+      <div id="task-items" class="task-items"></div>
+      <div class="tray"><span>GubbyOS Project</span><span id="clock">12:00</span></div>
+    </div>
+
+    <nav class="start-menu hidden" id="start-menu">
+      <div class="start-side">GUBBYOS<br><b>PROJECT</b></div>
+      <div class="start-options">
+        <button data-open="welcome">🖥️ <span>Bienvenue</span></button>
+        <button data-open="releases">💾 <span>Releases</span></button>
+        <button data-open="docs">📄 <span>Documentation</span></button>
+        <button data-open="about">ℹ️ <span>À propos</span></button>
+        <div class="menu-separator"></div>
+        <button id="menu-close">⏻ <span>Fermer le menu</span></button>
+      </div>
+    </nav>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
