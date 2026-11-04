@@ -2,81 +2,412 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#101827">
-    <title>GubbyOS Project</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>GubbyOS Project</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            background: linear-gradient(135deg, #101827, #172e48, #244c68);
-            min-height: 100vh;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        header {
-            height: 58px;
-            background: rgba(10, 18, 30, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 22px;
-            border-bottom: 1px solid #ffffff22;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #101827, #172e48, #244c68);
+    min-height: 100vh;
+}
 
-        .logo {
-            font-size: 19px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+header {
+    min-height: 60px;
+    background: rgba(10,18,30,.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 22px;
+    border-bottom: 1px solid #ffffff22;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-        nav {
-            display: flex;
-            gap: 8px;
-        }
+.logo {
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
-        nav button {
-            background: transparent;
-            color: white;
-            border: none;
-            padding: 11px;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 14px;
-        }
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
-        nav button:hover, nav button.active {
-            background: #ffffff20;
-        }
+nav button {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+}
 
-        main {
-            max-width: 1000px;
-            margin: 45px auto 100px;
-            padding: 0 20px;
-        }
+nav button:hover,
+nav button.active {
+    background: #ffffff20;
+}
 
-        .window {
-            background: rgba(17, 29, 45, 0.92);
-            border: 1px solid #ffffff25;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px #0005;
-            animation: appear .25s ease;
-        }
+main {
+    max-width: 1000px;
+    margin: 45px auto 100px;
+    padding: 0 20px;
+}
 
-        @keyframes appear {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.window {
+    background: rgba(17,29,45,.92);
+    border: 1px solid #ffffff25;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px #0005;
+    animation: appear .25s ease;
+}
 
-        .window-bar {
-            background: #ffffff12;
-            padding
+@keyframes appear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.window-bar {
+    background: #ffffff12;
+    padding: 14px 18px;
+    border-bottom: 1px solid #ffffff18;
+    font-weight: bold;
+}
+
+.content {
+    padding: 30px;
+}
+
+h1 {
+    font-size: clamp(30px,6vw,48px);
+    margin-bottom: 12px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+p {
+    color: #c4d2e3;
+    line-height: 1.7;
+}
+
+.hero {
+    text-align: center;
+    padding: 65px 25px;
+}
+
+.hero .symbol {
+    font-size: 65px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    margin: 15px 0;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #9fc5e8;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 8px 5px;
+    background: #2788d8;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #46a5f0;
+}
+
+.secondary {
+    background: #ffffff18;
+}
+
+.version {
+    background: #ffffff0b;
+    border: 1px solid #ffffff20;
+    border-radius: 12px;
+    padding: 22px;
+    margin-top: 20px;
+}
+
+.status {
+    color: #ffd36b;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+code {
+    background: #0005;
+    padding: 4px 7px;
+    border-radius: 5px;
+    overflow-wrap: anywhere;
+}
+
+.desktop-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    background: rgba(10,18,30,.95);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid #ffffff25;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 20;
+}
+
+.desktop-brand {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.clock {
+    color: #c4d2e3;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    color: #8fa5ba;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media(max-width:600px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    nav button {
+        padding: 8px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    main {
+        margin-top: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🖥️ GubbyOS Project</div>
+
+    <nav>
+        <button class="active" onclick="showPage('home',this)">🖥️ Bienvenue</button>
+        <button onclick="showPage('releases',this)">💾 Releases</button>
+        <button onclick="showPage('docs',this)">📄 Documentation</button>
+        <button onclick="showPage('about',this)">ℹ️ À propos</button>
+    </nav>
+</header>
+
+<main>
+
+<section id="home" class="window">
+    <div class="window-bar">🖥️ Bienvenue dans GubbyOS Project</div>
+
+    <div class="content hero">
+        <div class="symbol">G</div>
+
+        <h1>GubbyOS Project</h1>
+
+        <div class="subtitle">
+            Think easy and simple, every day.
+        </div>
+
+        <p>
+            Bienvenue sur le site officiel du projet GubbyOS !
+            Retrouvez ici les versions, les informations et
+            la documentation du système.
+        </p>
+
+        <button class="button" onclick="showPage('releases')">
+            Voir les releases
+        </button>
+
+        <button class="button secondary" onclick="showPage('about')">
+            Découvrir le projet
+        </button>
+    </div>
+</section>
+
+<section id="releases" class="window hidden">
+    <div class="window-bar">💾 Releases — GubbyOS Project</div>
+
+    <div class="content">
+        <h2>📦 Toutes les versions</h2>
+
+        <p>
+            Retrouvez les versions publiées de GubbyOS
+            et leur état de développement.
+        </p>
+
+        <div class="version">
+            <span class="status">● EN DÉVELOPPEMENT</span>
+
+            <h2>GubbyOS 0.1 Dev</h2>
+
+            <p>
+                Première version de développement de GubbyOS.
+            </p>
+
+            <p><b>Version :</b> 0.1 Dev</p>
+            <p><b>Architecture :</b> x86 (i386)</p>
+            <p><b>Image :</b> gubbyos.img</p>
+
+            <a class="button" href="./releases/gubbyos.img">
+                Télécharger gubbyos.img
+            </a>
+
+            <p>
+                SHA-256 :
+                <code>ecb5afa71a44a529531c97bdebca419ef06c72ac7af4ee8e942a0623ce5e7346</code>
+            </p>
+        </div>
+
+        <h2>▶️ Démarrer avec VirtualBox 6.1</h2>
+
+        <ol>
+            <li>Éteignez complètement la machine virtuelle.</li>
+            <li>Ouvrez Configuration → Stockage.</li>
+            <li>Ajoutez un contrôleur de disquette I82078.</li>
+            <li>Ajoutez un lecteur de disquette et sélectionnez gubbyos.img.</li>
+            <li>Dans Système → Ordre d'amorçage, activez Disquette.</li>
+            <li>Démarrez la machine virtuelle.</li>
+        </ol>
+
+        <p>
+            Important : le fichier est une image de disquette (.img),
+            pas une image DVD/ISO.
+        </p>
+    </div>
+</section>
+
+<section id="docs" class="window hidden">
+    <div class="window-bar">📄 Documentation</div>
+
+    <div class="content">
+        <h2>Documentation GubbyOS</h2>
+
+        <p>
+            La documentation du projet sera enrichie
+            au fil des versions.
+        </p>
+
+        <ul>
+            <li>📘 Présentation de GubbyOS</li>
+            <li>⚙️ Installation et démarrage</li>
+            <li>🛍️ GuStore</li>
+            <li>👤 GuAccount</li>
+            <li>🔄 GUpdate</li>
+        </ul>
+
+        <p>Les guides détaillés arrivent prochainement.</p>
+        <p>Centre d'aide — bientôt disponible.</p>
+    </div>
+</section>
+
+<section id="about" class="window hidden">
+    <div class="window-bar">ℹ️ À propos de GubbyOS Project</div>
+
+    <div class="content">
+        <h2>GubbyOS Project</h2>
+
+        <p>
+            Un système d'exploitation expérimental
+            en cours de développement.
+        </p>
+
+        <p><b>Site du projet :</b> GubbyOS Project</p>
+        <p><b>Version du site :</b> 1.0</p>
+
+        <p>© GubbyOS Project</p>
+    </div>
+</section>
+
+</main>
+
+<div class="desktop-bar">
+    <div class="desktop-brand">🟢 GubbyOS</div>
+    <div class="clock" id="clock">00:00</div>
+</div>
+
+<footer>
+    GubbyOS Project — Think easy and simple, every day.
+</footer>
+
+<script>
+function showPage(page, button) {
+    document.querySelectorAll('main section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    document.getElementById(page).classList.remove('hidden');
+
+    document.querySelectorAll('nav button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    if (button) {
+        button.classList.add('active');
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+function updateClock() {
+    document.getElementById('clock').textContent =
+        new Date().toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
+```
