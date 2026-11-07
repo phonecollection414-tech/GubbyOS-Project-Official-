@@ -1,575 +1,620 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101827">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101827">
 
-<title>GubbyOS Project</title>
+    <title>GubbyOS Project</title>
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    background: linear-gradient(135deg, #101827, #172e48, #244c68);
-    min-height: 100vh;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         sans-serif;
+            background: linear-gradient(135deg, #080e1c, #14243d);
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding-bottom: 65px;
+        }
 
-/* HEADER */
+        header {
+            padding: 35px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-header {
-    min-height: 65px;
-    background: rgba(10,18,30,.94);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 22px;
-    border-bottom: 1px solid #ffffff22;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    backdrop-filter: blur(15px);
-    flex-wrap: wrap;
-    gap: 10px;
-}
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
 
-.logo {
-    font-size: 19px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        .logo span {
+            color: #60a5fa;
+        }
 
-nav {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
-nav button {
-    background: transparent;
-    color: white;
-    border: none;
-    padding: 11px;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: .2s;
-}
+        nav button {
+            background: transparent;
+            border: 1px solid transparent;
+            color: #cbd5e1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
 
-nav button:hover,
-nav button.active {
-    background: #ffffff20;
-}
+        nav button:hover,
+        nav button.active {
+            background: rgba(96,165,250,0.15);
+            color: #60a5fa;
+            border-color: rgba(96,165,250,0.25);
+        }
 
-/* MAIN */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 65px 25px;
+        }
 
-main {
-    max-width: 1000px;
-    margin: 45px auto 100px;
-    padding: 0 20px;
-}
+        .page {
+            display: none;
+            animation: appear 0.3s ease;
+        }
 
-.window {
-    background: rgba(17,29,45,.94);
-    border: 1px solid #ffffff25;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 15px 50px #0005;
-    animation: appear .25s ease;
-}
+        .page.active {
+            display: block;
+        }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.window-bar {
-    background: #ffffff12;
-    padding: 14px 18px;
-    border-bottom: 1px solid #ffffff18;
-    font-weight: bold;
-}
+        .hero {
+            padding: 55px 0;
+        }
 
-.content {
-    padding: 30px;
-}
+        .badge {
+            display: inline-block;
+            background: rgba(96,165,250,0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(96,165,250,0.25);
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
 
-h1 {
-    font-size: clamp(30px,6vw,48px);
-    margin-bottom: 12px;
-}
+        h1 {
+            font-size: clamp(40px, 7vw, 70px);
+            line-height: 1.08;
+            letter-spacing: -3px;
+            margin-bottom: 22px;
+        }
 
-h2 {
-    margin-top: 0;
-}
+        h1 span {
+            color: #60a5fa;
+        }
 
-p {
-    color: #c4d2e3;
-    line-height: 1.7;
-}
+        h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
 
-/* HERO */
+        h3 {
+            margin-bottom: 12px;
+        }
 
-.hero {
-    text-align: center;
-    padding: 65px 25px;
-}
+        p {
+            color: #aab8ca;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
 
-.symbol {
-    font-size: 65px;
-    font-weight: bold;
-    color: #55b5ff;
-    text-shadow: 0 0 25px #2788d888;
-}
+        .hero-text {
+            font-size: 18px;
+            max-width: 650px;
+        }
 
-.hero h1 {
-    margin: 15px 0;
-}
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
 
-.subtitle {
-    font-size: 18px;
-    color: #9fc5e8;
-}
+        .button {
+            display: inline-block;
+            padding: 13px 20px;
+            border-radius: 11px;
+            text-decoration: none;
+            font-weight: 650;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
 
-/* BUTTONS */
+        .primary {
+            background: #3b82f6;
+            color: white;
+        }
 
-.button {
-    display: inline-block;
-    padding: 12px 20px;
-    margin: 8px 5px;
-    background: #2788d8;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .2s;
-}
+        .primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
 
-.button:hover {
-    background: #46a5f0;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 18px #2788d855;
-}
+        .secondary {
+            background: rgba(255,255,255,0.07);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
 
-.secondary {
-    background: #ffffff18;
-}
+        .secondary:hover {
+            background: rgba(255,255,255,0.13);
+        }
 
-.secondary:hover {
-    background: #ffffff30;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+            margin-top: 30px;
+        }
 
-/* RELEASES */
+        .card {
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 17px;
+            padding: 24px;
+            transition: 0.2s;
+        }
 
-.version {
-    background: #ffffff0b;
-    border: 1px solid #ffffff20;
-    border-radius: 12px;
-    padding: 22px;
-    margin-top: 20px;
-}
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(96,165,250,0.4);
+        }
 
-.status {
-    color: #ffd36b;
-    font-size: 13px;
-    font-weight: bold;
-}
+        .icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
 
-code {
-    background: #0005;
-    padding: 4px 7px;
-    border-radius: 5px;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
+        .section-title {
+            margin-bottom: 35px;
+        }
 
-/* BOTTOM BAR */
+        .download-card {
+            background: linear-gradient(
+                135deg,
+                rgba(37,99,235,0.2),
+                rgba(96,165,250,0.06)
+            );
+            border: 1px solid rgba(96,165,250,0.25);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 25px;
+        }
 
-.desktop-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 55px;
-    background: rgba(10,18,30,.95);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid #ffffff25;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 20;
-}
+        .status {
+            display: inline-block;
+            color: #4ade80;
+            background: rgba(74,222,128,0.1);
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
 
-.desktop-brand {
-    font-weight: bold;
-    font-size: 15px;
-}
+        .warning {
+            color: #fbbf24;
+            background: rgba(251,191,36,0.08);
+            border: 1px solid rgba(251,191,36,0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
 
-.clock {
-    color: #c4d2e3;
-    font-size: 14px;
-}
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            color: #718096;
+            font-size: 13px;
+        }
 
-/* FOOTER */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            background: rgba(8,14,28,0.95);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            color: #94a3b8;
+            font-size: 12px;
+            backdrop-filter: blur(15px);
+        }
 
-footer {
-    text-align: center;
-    color: #8fa5ba;
-    padding: 20px;
-    font-size: 13px;
-}
+        @media (max-width: 600px) {
+            header {
+                padding: 25px 5%;
+            }
 
-.hidden {
-    display: none;
-}
+            nav {
+                width: 100%;
+            }
 
-/* MOBILE */
+            nav button {
+                padding: 9px 11px;
+            }
 
-@media(max-width:600px) {
-    header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+            main {
+                padding: 35px 18px;
+            }
 
-    nav button {
-        padding: 8px;
-    }
-
-    .content {
-        padding: 20px;
-    }
-
-    main {
-        margin-top: 25px;
-    }
-
-    .hero {
-        padding: 45px 15px;
-    }
-
-    .desktop-bar {
-        padding: 0 12px;
-    }
-}
-</style>
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-
-    <div class="logo">
-        🖥️ GubbyOS Project
-    </div>
+    <div class="logo">Gubby<span>OS</span></div>
 
     <nav>
-
-        <button class="active"
-        onclick="showPage('home',this)">
-            🖥️ Bienvenue
+        <button class="active" onclick="showPage('home', this)">
+            Accueil
         </button>
 
-        <button onclick="showPage('releases',this)">
-            💾 Releases
+        <button onclick="showPage('releases', this)">
+            Releases
         </button>
 
-        <button onclick="showPage('docs',this)">
-            📄 Documentation
+        <button onclick="showPage('documentation', this)">
+            Documentation
         </button>
 
-        <button onclick="showPage('about',this)">
-            ℹ️ À propos
+        <button onclick="showPage('about', this)">
+            À propos
         </button>
-
     </nav>
-
 </header>
 
 <main>
 
-<!-- HOME -->
+    <!-- ACCUEIL -->
+    <section id="home" class="page active">
 
-<section id="home" class="window">
+        <div class="hero">
+            <div class="badge">🚧 GubbyOS 0.1 Dev — En développement</div>
 
-    <div class="window-bar">
-        🖥️ Bienvenue dans GubbyOS Project
-    </div>
+            <h1>
+                GubbyOS.<br>
+                <span>Think easy and simple.</span>
+            </h1>
 
-    <div class="content hero">
+            <p class="hero-text">
+                Un système d'exploitation expérimental conçu pour
+                explorer, apprendre et rendre l'informatique plus simple.
+                Bienvenue dans le projet GubbyOS !
+            </p>
 
-        <div class="symbol">G</div>
+            <div class="buttons">
+                <button class="button primary"
+                        onclick="showPage('releases')">
+                    ⬇️ Voir les téléchargements
+                </button>
 
-        <h1>GubbyOS Project</h1>
-
-        <div class="subtitle">
-            Think easy and simple, every day.
+                <button class="button secondary"
+                        onclick="showPage('documentation')">
+                    📖 Documentation
+                </button>
+            </div>
         </div>
 
-        <p>
-            Bienvenue sur le site officiel du projet GubbyOS !
-            Retrouvez ici les versions, les informations et
-            la documentation du système.
-        </p>
+        <div class="grid">
 
-        <button class="button"
-        onclick="showPage('releases')">
-            💾 Voir les téléchargements
-        </button>
+            <div class="card">
+                <div class="icon">💻</div>
+                <h3>Un système expérimental</h3>
+                <p>
+                    GubbyOS est un projet indépendant destiné
+                    à expérimenter la création d'un système
+                    d'exploitation.
+                </p>
+            </div>
 
-        <button class="button secondary"
-        onclick="showPage('about')">
-            Découvrir le projet
-        </button>
+            <div class="card">
+                <div class="icon">⚙️</div>
+                <h3>En développement</h3>
+                <p>
+                    Le système évolue progressivement avec de
+                    nouvelles fonctionnalités et améliorations.
+                </p>
+            </div>
 
-    </div>
+            <div class="card">
+                <div class="icon">🚀</div>
+                <h3>Un projet passion</h3>
+                <p>
+                    Apprendre, tester et construire quelque chose
+                    de nouveau, étape par étape.
+                </p>
+            </div>
 
-</section>
+        </div>
+    </section>
 
-<!-- RELEASES -->
 
-<section id="releases" class="window hidden">
+    <!-- RELEASES -->
+    <section id="releases" class="page">
 
-    <div class="window-bar">
-        💾 Releases — GubbyOS Project
-    </div>
+        <div class="section-title">
+            <div class="badge">📦 Téléchargements</div>
+            <h2>Releases</h2>
+            <p>
+                Retrouvez ici les versions disponibles de GubbyOS.
+            </p>
+        </div>
 
-    <div class="content">
+        <div class="download-card">
 
-        <h2>📦 Toutes les versions</h2>
-
-        <p>
-            Retrouvez les versions publiées de GubbyOS
-            et leur état de développement.
-        </p>
-
-        <div class="version">
-
-            <span class="status">
-                ● EN DÉVELOPPEMENT
-            </span>
+            <div class="status">● Disponible</div>
 
             <h2>GubbyOS 0.1 Dev</h2>
 
             <p>
                 Première version de développement de GubbyOS.
+                Cette version permet de découvrir le projet
+                et de le tester dans une machine virtuelle.
             </p>
 
-            <p><b>Version :</b> 0.1 Dev</p>
+            <div class="buttons">
+                <a class="button primary"
+                   href="https://github.com/phonecollection414-tech/GubbyOS-Project-Official-/releases/download/GubbyOS-Direct-Download/gubbyos.img"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    ⬇️ Télécharger GubbyOS 0.1 Dev
+                </a>
 
-            <p><b>Architecture :</b> x86 (i386)</p>
+                <a class="button secondary"
+                   href="https://github.com/phonecollection414-tech/GubbyOS-Project-Official-/releases"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Voir toutes les releases
+                </a>
+            </div>
 
-            <p><b>Image :</b> gubbyos.img</p>
+            <div class="warning">
+                ⚠️ GubbyOS est un projet expérimental.
+                Il est recommandé de le tester dans une machine
+                virtuelle comme VirtualBox.
+            </div>
 
-            <!-- DIRECT DOWNLOAD -->
+        </div>
+    </section>
 
-            <a class="button"
-            href="https://github.com/phonecollection414-tech/GubbyOS-Project-Official-/releases/download/GubbyOS-Direct-Download/gubbyos.img">
 
-                ⬇️ Télécharger GubbyOS 0.1 Dev
+    <!-- DOCUMENTATION -->
+    <section id="documentation" class="page">
 
-            </a>
+        <div class="section-title">
+            <div class="badge">📚 Documentation</div>
+            <h2>Documentation</h2>
+            <p>
+                Quelques informations pour découvrir et tester GubbyOS.
+            </p>
+        </div>
 
-            <a class="button secondary"
-            href="https://github.com/phonecollection414-tech/GubbyOS-Project-Official-/releases">
+        <div class="grid">
 
-                Voir toutes les versions
+            <div class="card">
+                <div class="icon">💿</div>
+                <h3>Installation</h3>
+                <p>
+                    Téléchargez l'image disque de GubbyOS puis
+                    créez une machine virtuelle dans VirtualBox.
+                </p>
+            </div>
 
-            </a>
+            <div class="card">
+                <div class="icon">🖥️</div>
+                <h3>VirtualBox</h3>
+                <p>
+                    GubbyOS peut être testé dans une machine
+                    virtuelle configurée pour utiliser une
+                    architecture Intel x86.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🛠️</div>
+                <h3>Développement</h3>
+                <p>
+                    Le projet est encore en construction.
+                    Certaines fonctionnalités ne sont pas
+                    encore disponibles.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- À PROPOS -->
+    <section id="about" class="page">
+
+        <div class="section-title">
+            <div class="badge">🌐 Le projet</div>
+            <h2>À propos de GubbyOS</h2>
 
             <p>
-                SHA-256 :
-                <code>ecb5afa71a44a529531c97bdebca419ef06c72ac7af4ee8e942a0623ce5e7346</code>
+                GubbyOS est un projet indépendant de création
+                d'un système d'exploitation.
             </p>
+
+            <p>
+                L'objectif est de développer progressivement
+                un environnement simple, avec une interface
+                graphique et plusieurs applications.
+            </p>
+        </div>
+
+        <h3>Fonctionnalités prévues</h3>
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="icon">🪟</div>
+                <h3>Interface graphique</h3>
+                <p>
+                    Un environnement de bureau avec fenêtres,
+                    icônes et menu principal.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🛍️</div>
+                <h3>GuStore</h3>
+                <p>
+                    Une boutique pour découvrir et installer
+                    des applications.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">👤</div>
+                <h3>GuAccount</h3>
+                <p>
+                    Un système de gestion de compte utilisateur.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔄</div>
+                <h3>GUpdate</h3>
+                <p>
+                    Un système de gestion des mises à jour.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>MobileGubby</h3>
+                <p>
+                    Un projet futur pour explorer une version
+                    mobile de GubbyOS.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📝</div>
+                <h3>Rapports d'erreurs</h3>
+                <p>
+                    Un système de signalement des problèmes
+                    avec participation facultative.
+                </p>
+            </div>
 
         </div>
 
-        <h2 style="margin-top:35px;">
-            ▶️ Démarrer avec VirtualBox 6.1
-        </h2>
+        <div class="warning">
+            🚧 Ces fonctionnalités sont prévues ou en développement.
+            Elles ne sont pas nécessairement présentes dans la version
+            0.1 Dev.
+        </div>
 
-        <ol>
-            <li>Éteignez complètement la machine virtuelle.</li>
-            <li>Ouvrez Configuration → Stockage.</li>
-            <li>Ajoutez un contrôleur de disquette I82078.</li>
-            <li>Ajoutez un lecteur de disquette et sélectionnez gubbyos.img.</li>
-            <li>Dans Système → Ordre d'amorçage, activez Disquette.</li>
-            <li>Démarrez la machine virtuelle.</li>
-        </ol>
-
-        <p>
-            Important : le fichier est une image de disquette (.img),
-            pas une image DVD/ISO.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- DOCUMENTATION -->
-
-<section id="docs" class="window hidden">
-
-    <div class="window-bar">
-        📄 Documentation
-    </div>
-
-    <div class="content">
-
-        <h2>Documentation GubbyOS</h2>
-
-        <p>
-            La documentation du projet sera enrichie
-            au fil des versions.
-        </p>
-
-        <ul>
-            <li>📘 Présentation de GubbyOS</li>
-            <li>⚙️ Installation et démarrage</li>
-            <li>🛍️ GuStore</li>
-            <li>👤 GuAccount</li>
-            <li>🔄 GUpdate</li>
-        </ul>
-
-        <p>
-            Les guides détaillés arrivent prochainement.
-        </p>
-
-        <p>
-            Centre d'aide — bientôt disponible.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about" class="window hidden">
-
-    <div class="window-bar">
-        ℹ️ À propos de GubbyOS Project
-    </div>
-
-    <div class="content">
-
-        <h2>GubbyOS Project</h2>
-
-        <p>
-            Un système d'exploitation expérimental
-            en cours de développement.
-        </p>
-
-        <p>
-            <b>Site du projet :</b> GubbyOS Project
-        </p>
-
-        <p>
-            <b>Version du site :</b> 1.3
-        </p>
-
-        <p>
-            <b>Système :</b> GubbyOS 0.1 Dev
-        </p>
-
-        <p>
-            <b>Architecture :</b> x86 (i386)
-        </p>
-
-        <p>
-            © GubbyOS Project
-        </p>
-
-    </div>
-
-</section>
+    </section>
 
 </main>
 
-<!-- BOTTOM BAR -->
+<footer>
+    GubbyOS Project · Think easy and simple.
+</footer>
 
-<div class="desktop-bar">
-
-    <div class="desktop-brand">
-        🟢 GubbyOS
-    </div>
-
-    <div class="clock" id="clock">
-        00:00
-    </div>
-
+<div class="bottom-bar">
+    <span>🟦 GubbyOS Project</span>
+    <span id="clock">--:--</span>
 </div>
 
-<footer>
-    GubbyOS Project — Think easy and simple, every day.
-</footer>
 
 <script>
 
-/* PAGE NAVIGATION */
+    function showPage(page, button) {
 
-function showPage(page, button) {
+        document.querySelectorAll('.page').forEach(section => {
+            section.classList.remove('active');
+        });
 
-    document.querySelectorAll('main section').forEach(section => {
-        section.classList.add('hidden');
-    });
-
-    document.getElementById(page).classList.remove('hidden');
-
-    document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('active');
-    });
-
-    if (button) {
-        button.classList.add('active');
-    } else {
         document.querySelectorAll('nav button').forEach(btn => {
-            if (btn.getAttribute('onclick').includes("'" + page + "'")) {
-                btn.classList.add('active');
+            btn.classList.remove('active');
+        });
+
+        document.getElementById(page).classList.add('active');
+
+        if (button) {
+            button.classList.add('active');
+        } else {
+            const matchingButton = [...document.querySelectorAll('nav button')]
+                .find(btn => btn.getAttribute('onclick')?.includes(page));
+
+            if (matchingButton) {
+                matchingButton.classList.add('active');
             }
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     }
 
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
 
-}
+    function updateClock() {
 
-/* CLOCK */
+        const now = new Date();
 
-function updateClock() {
+        document.getElementById('clock').textContent =
+            now.toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+    }
 
-    document.getElementById('clock').textContent =
-        new Date().toLocaleTimeString('fr-FR', {
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-
-}
-
-updateClock();
-
-setInterval(updateClock, 1000);
+    updateClock();
+    setInterval(updateClock, 1000);
 
 </script>
 
 </body>
 </html>
-```
