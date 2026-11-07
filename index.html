@@ -5,11 +5,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101827">
+
 <title>GubbyOS Project</title>
 
 <style>
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -20,9 +25,11 @@ body {
     min-height: 100vh;
 }
 
+/* HEADER */
+
 header {
-    min-height: 60px;
-    background: rgba(10,18,30,.9);
+    min-height: 65px;
+    background: rgba(10,18,30,.94);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,6 +38,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
+    backdrop-filter: blur(15px);
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -55,12 +63,15 @@ nav button {
     cursor: pointer;
     border-radius: 8px;
     font-size: 14px;
+    transition: background .2s;
 }
 
 nav button:hover,
 nav button.active {
     background: #ffffff20;
 }
+
+/* MAIN */
 
 main {
     max-width: 1000px;
@@ -69,7 +80,7 @@ main {
 }
 
 .window {
-    background: rgba(17,29,45,.92);
+    background: rgba(17,29,45,.94);
     border: 1px solid #ffffff25;
     border-radius: 15px;
     overflow: hidden;
@@ -78,8 +89,14 @@ main {
 }
 
 @keyframes appear {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .window-bar {
@@ -107,6 +124,8 @@ p {
     line-height: 1.7;
 }
 
+/* HERO */
+
 .hero {
     text-align: center;
     padding: 65px 25px;
@@ -115,6 +134,8 @@ p {
 .hero .symbol {
     font-size: 65px;
     font-weight: bold;
+    color: #55b5ff;
+    text-shadow: 0 0 25px #2788d888;
 }
 
 .hero h1 {
@@ -125,6 +146,8 @@ p {
     font-size: 18px;
     color: #9fc5e8;
 }
+
+/* BUTTONS */
 
 .button {
     display: inline-block;
@@ -137,15 +160,24 @@ p {
     border: none;
     cursor: pointer;
     font-weight: bold;
+    transition: .2s;
 }
 
 .button:hover {
     background: #46a5f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px #2788d855;
 }
 
 .secondary {
     background: #ffffff18;
 }
+
+.secondary:hover {
+    background: #ffffff30;
+}
+
+/* RELEASES */
 
 .version {
     background: #ffffff0b;
@@ -153,6 +185,11 @@ p {
     border-radius: 12px;
     padding: 22px;
     margin-top: 20px;
+    transition: border .2s;
+}
+
+.version:hover {
+    border-color: #2788d8;
 }
 
 .status {
@@ -166,7 +203,10 @@ code {
     padding: 4px 7px;
     border-radius: 5px;
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
+
+/* DESKTOP BAR */
 
 .desktop-bar {
     position: fixed;
@@ -194,6 +234,8 @@ code {
     font-size: 14px;
 }
 
+/* FOOTER */
+
 footer {
     text-align: center;
     color: #8fa5ba;
@@ -204,6 +246,8 @@ footer {
 .hidden {
     display: none;
 }
+
+/* MOBILE */
 
 @media(max-width:600px) {
     header {
@@ -222,6 +266,14 @@ footer {
     main {
         margin-top: 25px;
     }
+
+    .hero {
+        padding: 45px 15px;
+    }
+
+    .desktop-bar {
+        padding: 0 12px;
+    }
 }
 </style>
 </head>
@@ -229,22 +281,43 @@ footer {
 <body>
 
 <header>
-    <div class="logo">🖥️ GubbyOS Project</div>
+
+    <div class="logo">
+        🖥️ GubbyOS Project
+    </div>
 
     <nav>
-        <button class="active" onclick="showPage('home',this)">🖥️ Bienvenue</button>
-        <button onclick="showPage('releases',this)">💾 Releases</button>
-        <button onclick="showPage('docs',this)">📄 Documentation</button>
-        <button onclick="showPage('about',this)">ℹ️ À propos</button>
+        <button class="active" onclick="showPage('home',this)">
+            🖥️ Bienvenue
+        </button>
+
+        <button onclick="showPage('releases',this)">
+            💾 Releases
+        </button>
+
+        <button onclick="showPage('docs',this)">
+            📄 Documentation
+        </button>
+
+        <button onclick="showPage('about',this)">
+            ℹ️ À propos
+        </button>
     </nav>
+
 </header>
 
 <main>
 
+<!-- HOME -->
+
 <section id="home" class="window">
-    <div class="window-bar">🖥️ Bienvenue dans GubbyOS Project</div>
+
+    <div class="window-bar">
+        🖥️ Bienvenue dans GubbyOS Project
+    </div>
 
     <div class="content hero">
+
         <div class="symbol">G</div>
 
         <h1>GubbyOS Project</h1>
@@ -260,19 +333,27 @@ footer {
         </p>
 
         <button class="button" onclick="showPage('releases')">
-            Voir les releases
+            💾 Télécharger GubbyOS
         </button>
 
         <button class="button secondary" onclick="showPage('about')">
             Découvrir le projet
         </button>
+
     </div>
+
 </section>
 
+<!-- RELEASES -->
+
 <section id="releases" class="window hidden">
-    <div class="window-bar">💾 Releases — GubbyOS Project</div>
+
+    <div class="window-bar">
+        💾 Releases — GubbyOS Project
+    </div>
 
     <div class="content">
+
         <h2>📦 Toutes les versions</h2>
 
         <p>
@@ -281,7 +362,10 @@ footer {
         </p>
 
         <div class="version">
-            <span class="status">● EN DÉVELOPPEMENT</span>
+
+            <span class="status">
+                ● EN DÉVELOPPEMENT
+            </span>
 
             <h2>GubbyOS 0.1 Dev</h2>
 
@@ -293,17 +377,24 @@ footer {
             <p><b>Architecture :</b> x86 (i386)</p>
             <p><b>Image :</b> gubbyos.img</p>
 
-            <a class="button" href="./releases/gubbyos.img">
-                Télécharger gubbyos.img
+            <a
+                class="button"
+                href="https://github.com/phonecollection414-tech/GubbyOS-Project/releases/latest"
+                target="_blank"
+                rel="noopener noreferrer">
+                ⬇️ Télécharger GubbyOS 0.1 Dev
             </a>
 
             <p>
                 SHA-256 :
                 <code>ecb5afa71a44a529531c97bdebca419ef06c72ac7af4ee8e942a0623ce5e7346</code>
             </p>
+
         </div>
 
-        <h2>▶️ Démarrer avec VirtualBox 6.1</h2>
+        <h2 style="margin-top:35px;">
+            ▶️ Démarrer avec VirtualBox 6.1
+        </h2>
 
         <ol>
             <li>Éteignez complètement la machine virtuelle.</li>
@@ -318,13 +409,21 @@ footer {
             Important : le fichier est une image de disquette (.img),
             pas une image DVD/ISO.
         </p>
+
     </div>
+
 </section>
 
+<!-- DOCUMENTATION -->
+
 <section id="docs" class="window hidden">
-    <div class="window-bar">📄 Documentation</div>
+
+    <div class="window-bar">
+        📄 Documentation
+    </div>
 
     <div class="content">
+
         <h2>Documentation GubbyOS</h2>
 
         <p>
@@ -340,15 +439,28 @@ footer {
             <li>🔄 GUpdate</li>
         </ul>
 
-        <p>Les guides détaillés arrivent prochainement.</p>
-        <p>Centre d'aide — bientôt disponible.</p>
+        <p>
+            Les guides détaillés arrivent prochainement.
+        </p>
+
+        <p>
+            Centre d'aide — bientôt disponible.
+        </p>
+
     </div>
+
 </section>
 
+<!-- ABOUT -->
+
 <section id="about" class="window hidden">
-    <div class="window-bar">ℹ️ À propos de GubbyOS Project</div>
+
+    <div class="window-bar">
+        ℹ️ À propos de GubbyOS Project
+    </div>
 
     <div class="content">
+
         <h2>GubbyOS Project</h2>
 
         <p>
@@ -356,18 +468,40 @@ footer {
             en cours de développement.
         </p>
 
-        <p><b>Site du projet :</b> GubbyOS Project</p>
-        <p><b>Version du site :</b> 1.0</p>
+        <p>
+            <b>Site du projet :</b> GubbyOS Project
+        </p>
 
-        <p>© GubbyOS Project</p>
+        <p>
+            <b>Version du site :</b> 1.1
+        </p>
+
+        <p>
+            <b>Système :</b> GubbyOS 0.1 Dev
+        </p>
+
+        <p>
+            © GubbyOS Project
+        </p>
+
     </div>
+
 </section>
 
 </main>
 
+<!-- BOTTOM BAR -->
+
 <div class="desktop-bar">
-    <div class="desktop-brand">🟢 GubbyOS</div>
-    <div class="clock" id="clock">00:00</div>
+
+    <div class="desktop-brand">
+        🟢 GubbyOS
+    </div>
+
+    <div class="clock" id="clock">
+        00:00
+    </div>
+
 </div>
 
 <footer>
@@ -375,7 +509,11 @@ footer {
 </footer>
 
 <script>
+
+/* PAGE NAVIGATION */
+
 function showPage(page, button) {
+
     document.querySelectorAll('main section').forEach(section => {
         section.classList.add('hidden');
     });
@@ -394,18 +532,25 @@ function showPage(page, button) {
         top: 0,
         behavior: 'smooth'
     });
+
 }
 
+/* CLOCK */
+
 function updateClock() {
+
     document.getElementById('clock').textContent =
         new Date().toLocaleTimeString('fr-FR', {
             hour: '2-digit',
             minute: '2-digit'
         });
+
 }
 
 updateClock();
+
 setInterval(updateClock, 1000);
+
 </script>
 
 </body>
