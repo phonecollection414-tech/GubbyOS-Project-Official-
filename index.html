@@ -1,6 +1,7 @@
 ```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,9 @@
 <title>GubbyOS Project</title>
 
 <style>
+
 * {
     box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
@@ -63,7 +61,7 @@ nav button {
     cursor: pointer;
     border-radius: 8px;
     font-size: 14px;
-    transition: background .2s;
+    transition: .2s;
 }
 
 nav button:hover,
@@ -131,7 +129,7 @@ p {
     padding: 65px 25px;
 }
 
-.hero .symbol {
+.symbol {
     font-size: 65px;
     font-weight: bold;
     color: #55b5ff;
@@ -185,11 +183,6 @@ p {
     border-radius: 12px;
     padding: 22px;
     margin-top: 20px;
-    transition: border .2s;
-}
-
-.version:hover {
-    border-color: #2788d8;
 }
 
 .status {
@@ -206,7 +199,7 @@ code {
     word-break: break-word;
 }
 
-/* DESKTOP BAR */
+/* BOTTOM BAR */
 
 .desktop-bar {
     position: fixed;
@@ -250,6 +243,7 @@ footer {
 /* MOBILE */
 
 @media(max-width:600px) {
+
     header {
         align-items: flex-start;
         flex-direction: column;
@@ -274,11 +268,15 @@ footer {
     .desktop-bar {
         padding: 0 12px;
     }
+
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -287,6 +285,7 @@ footer {
     </div>
 
     <nav>
+
         <button class="active" onclick="showPage('home',this)">
             🖥️ Bienvenue
         </button>
@@ -302,6 +301,7 @@ footer {
         <button onclick="showPage('about',this)">
             ℹ️ À propos
         </button>
+
     </nav>
 
 </header>
@@ -332,11 +332,13 @@ footer {
             la documentation du système.
         </p>
 
-        <button class="button" onclick="showPage('releases')">
+        <button class="button"
+        onclick="showPage('releases')">
             💾 Télécharger GubbyOS
         </button>
 
-        <button class="button secondary" onclick="showPage('about')">
+        <button class="button secondary"
+        onclick="showPage('about')">
             Découvrir le projet
         </button>
 
@@ -374,15 +376,21 @@ footer {
             </p>
 
             <p><b>Version :</b> 0.1 Dev</p>
+
             <p><b>Architecture :</b> x86 (i386)</p>
+
             <p><b>Image :</b> gubbyos.img</p>
 
-            <a
-                class="button"
-                href="https://github.com/phonecollection414-tech/GubbyOS-Project/releases/latest"
-                target="_blank"
-                rel="noopener noreferrer">
+            <a class="button"
+            href="https://github.com/phonecollection414-tech/GubbyOS-Project-Official-/releases/latest">
                 ⬇️ Télécharger GubbyOS 0.1 Dev
+            </a>
+
+            <a class="button secondary"
+            href="https://github.com/phonecollection414-tech/GubbyOS-Project-Official-/releases"
+            target="_blank"
+            rel="noopener noreferrer">
+                Voir toutes les versions
             </a>
 
             <p>
@@ -397,12 +405,19 @@ footer {
         </h2>
 
         <ol>
+
             <li>Éteignez complètement la machine virtuelle.</li>
+
             <li>Ouvrez Configuration → Stockage.</li>
+
             <li>Ajoutez un contrôleur de disquette I82078.</li>
+
             <li>Ajoutez un lecteur de disquette et sélectionnez gubbyos.img.</li>
+
             <li>Dans Système → Ordre d'amorçage, activez Disquette.</li>
+
             <li>Démarrez la machine virtuelle.</li>
+
         </ol>
 
         <p>
@@ -432,11 +447,17 @@ footer {
         </p>
 
         <ul>
+
             <li>📘 Présentation de GubbyOS</li>
+
             <li>⚙️ Installation et démarrage</li>
+
             <li>🛍️ GuStore</li>
+
             <li>👤 GuAccount</li>
+
             <li>🔄 GUpdate</li>
+
         </ul>
 
         <p>
@@ -473,11 +494,15 @@ footer {
         </p>
 
         <p>
-            <b>Version du site :</b> 1.1
+            <b>Version du site :</b> 1.2
         </p>
 
         <p>
             <b>Système :</b> GubbyOS 0.1 Dev
+        </p>
+
+        <p>
+            <b>Architecture :</b> x86 (i386)
         </p>
 
         <p>
@@ -510,7 +535,7 @@ footer {
 
 <script>
 
-/* PAGE NAVIGATION */
+/* NAVIGATION */
 
 function showPage(page, button) {
 
@@ -526,6 +551,12 @@ function showPage(page, button) {
 
     if (button) {
         button.classList.add('active');
+    } else {
+        document.querySelectorAll('nav button').forEach(btn => {
+            if (btn.getAttribute('onclick').includes("'" + page + "'")) {
+                btn.classList.add('active');
+            }
+        });
     }
 
     window.scrollTo({
